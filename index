@@ -1,1 +1,147 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אתר כץ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Cute_cartoon_cat.svg/2048px-Cute_cartoon_cat.svg.png');
+            background-size: 100px;
+            background-repeat: repeat;
+        }
+        h1 {
+            background-color: #5ca4a9;
+            color: white;
+            padding: 20px 0;
+            margin: 0;
+        }
+        .contacts, .shortcuts {
+            margin: 20px 0;
+            padding: 10px;
+        }
+        .contact-row {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .contact-row span {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        .contact-row button {
+            background-color: white;
+            border: none;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .contact-row button img {
+            width: 24px;
+            height: 24px;
+        }
+        .shortcuts button {
+            background-color: #ffcb77;
+            border: none;
+            color: black;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .shortcuts button:hover {
+            background-color: #ffa500;
+        }
+        .game {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 400px;
+        }
+        #gameCanvas {
+            border: 2px solid #5ca4a9;
+            background-color: #fff5e1;
+        }
+    </style>
+</head>
+<body>
+    <h1>אתר כץ</h1>
+
+    <div class="contacts">
+        <h2>אנשי קשר</h2>
+        <div class="contact-row">
+            <span>אבא</span>
+            <button onclick="location.href='tel:0552988884'"><img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="טלפון"></button>
+            <button onclick="location.href='https://wa.me/972552988884'"><img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="וואטסאפ"></button>
+        </div>
+        <div class="contact-row">
+            <span>אמא</span>
+            <button onclick="location.href='tel:0533922694'"><img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="טלפון"></button>
+            <button onclick="location.href='https://wa.me/972533922694'"><img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="וואטסאפ"></button>
+        </div>
+        <div class="contact-row">
+            <span>כחל</span>
+            <button onclick="location.href='tel:0552988885'"><img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="טלפון"></button>
+            <button onclick="location.href='https://wa.me/972552988885'"><img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="וואטסאפ"></button>
+        </div>
+        <div class="contact-row">
+            <span>סיני</span>
+            <button onclick="location.href='tel:0552988886'"><img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="טלפון"></button>
+            <button onclick="location.href='https://wa.me/972552988886'"><img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="וואטסאפ"></button>
+        </div>
+    </div>
+
+    <div class="shortcuts">
+        <h2>קיצורי דרך</h2>
+        <button onclick="location.href='https://docs.google.com/spreadsheets/d/1EJSk9IfV6ek5xyR3U93GbpF-n8AnK1hir77L1LNW91o/edit?usp=drivesdk'">לו"ז כץ</button>
+        <button onclick="location.href='https://poki.com'">פוקי משחקים</button>
+        <button onclick="location.href='https://chat.whatsapp.com/HmYsbxduh5T234rObXI87d'">קבוצת איבי</button>
+    </div>
+
+    <div class="game">
+        <h2>משחק פשוט</h2>
+        <canvas id="gameCanvas" width="300" height="300"></canvas>
+        <script>
+            const canvas = document.getElementById("gameCanvas");
+            const ctx = canvas.getContext("2d");
+
+            let x = canvas.width / 2;
+            let y = canvas.height / 2;
+            let dx = 2;
+            let dy = 2;
+            let ballRadius = 10;
+
+            function drawBall() {
+                ctx.beginPath();
+                ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+                ctx.fillStyle = "#5ca4a9";
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawBall();
+
+                if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+                    dx = -dx;
+                }
+                if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+                    dy = -dy;
+                }
+
+                x += dx;
+                y += dy;
+            }
+
+            setInterval(draw, 10);
+        </script>
+    </div>
+</body>
+</html>
 
